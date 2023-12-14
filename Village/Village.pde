@@ -1,49 +1,38 @@
+import controlP5.*;
 PImage bg;
 PImage house;
 PImage mountain;
 int y;
 
-// Item placement ranges
-  // for y = (420 - 300)
-  
-// mountains have to be placed in bg
-  // y = 500
+ControlP5 cp5;
+int myColor = color(0,0,0);
 
+int numberOfHouses = 0;
+// used to stop houses being rerendered unless user adds a house
+int oldNumberOfHouses = 0;
+
+// we want to use this to draw the houses
+// update this array to add or remove houses
+float[][] houseLocations = new float[11][2];
 
 void setup() {
-  size(1200, 750);
+    size(1200, 750);
   // The background image must be the same size as the parameters
   // into the size() method. In this program, the size of the image
   // is 640 x 360 pixels.
   bg = loadImage("Background.jpg");
   house = loadImage("SnowyHouse.png");
   mountain = loadImage("Mountain.png");
-}
 
-void draw() {
-  background(bg);
-
-  stroke(226, 204, 0);
-  line(0, y, width, y);
-
-  y++;
-  if (y > height) {
-    y = 0;
-  }
+  //noStroke();
+  cp5 = new ControlP5(this);
   
-  // TODO: Will have to stick these renders in a conditional that
-  // looks at the user's chosen snow level and render different mountains
-  // depending on their choice
-  
-  // left mountains
-  image(mountain, -100, 180, mountain.width/2, mountain.width/2);
-  image(mountain, 100, 280, mountain.width/3, mountain.width/3);
- 
-  // right mountains
-    image(mountain, 700, 80, mountain.width/1.5, mountain.width/1.5);
-  image(mountain, 500, 280, mountain.width/3, mountain.width/3);
-  image(mountain, 600, 185, mountain.width/2, mountain.width/2);
-
-  
-  //image(house, 100, 300, house.width/2, house.height/2);
+  // add a horizontal sliders, the value of this slider will be linked
+  // to variable 'sliderValue' 
+  cp5.addSlider("numberOfHouses")
+     .setPosition(50,700)
+     .setWidth(120)
+     .setHeight(30)
+     .setRange(0,10)
+     ;
 }
