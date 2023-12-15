@@ -1,5 +1,4 @@
 ControlP5 cp5;
-int myColor = color(0,0,0);
 
 int houses = 0;
 // used to stop houses being rerendered unless user adds a house
@@ -39,7 +38,7 @@ int oldNumberOfChristmasTrees = 0;
 float[][] christmasTreeLocations = new float[21][2];
 int christmasTreeYMin = 434;
 int christmasTreeYMax = 438;
-int[] christmasTreeSize = new int[]{4, 3, 2, 1};
+int[] christmasTreeSize = new int[]{4, 3, 2, 2};
 
 int lampposts = 0;
 // used to stop houses being rerendered unless user adds a house
@@ -51,8 +50,9 @@ int lamppostsYMin = 420;
 int lamppostsYMax = 424;
 int[] lamppostSize = new int[]{4, 3, 2, 1};
 
-
 int snowLevel = 0;
+
+//ArrayList<Integer, List<Object>> objectOrdering = new ArrayList<Integer, ArrayList<Object>>(1000);
 
 void setup() {
     size(1200, 750);
@@ -61,7 +61,9 @@ void setup() {
   // is 640 x 360 pixels.
   bg = loadImage("Background.jpg");
   mountain = loadImage("Mountain.png");
-  littleSnowHouse = loadImage("LittleSnowHouse.png");
+  littleSnowMountain = loadImage("LittleSnowMountain.png");
+  snowyMountain = loadImage("SnowyMountain.png");
+
   house = loadImage("House.png");
   littleSnowHouse = loadImage("LittleSnowHouse.png");
   snowyHouse = loadImage("SnowyHouse.png");
@@ -79,7 +81,17 @@ void setup() {
   snowyChristmasTree = loadImage("SnowyChristmasTree.png");
   
   lamppost = loadImage("Lamppost.png");
-  //noStroke();
+  
+  for (int i = 0; i<flakes.length; i++) { 
+    flakes[i] = new Snow(random(2, 10));
+    flakes[i].spreadY(i);
+  }
+  
+  for (int i = 0; i<heavyFlakes.length; i++) { 
+    heavyFlakes[i] = new Snow(random(4, 15));
+    heavyFlakes[i].spreadY(i);
+  }
+ 
   cp5 = new ControlP5(this);
   
   // add a horizontal sliders, the value of this slider will be linked

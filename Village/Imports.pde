@@ -1,7 +1,10 @@
 import controlP5.*;
 import java.util.Arrays;
 PImage bg;
+
 PImage mountain;
+PImage littleSnowMountain;
+PImage snowyMountain;
 
 PImage house;
 PImage snowyHouse;

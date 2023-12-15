@@ -1,12 +1,34 @@
 void drawBG() {
-  // left mountains
-  image(mountain, -100, 180, mountain.width/2, mountain.width/2);
-  image(mountain, 100, 280, mountain.width/3, mountain.width/3);
- 
-  // right mountains
-  image(mountain, 700, 80, mountain.width/1.5, mountain.width/1.5);
-  image(mountain, 500, 280, mountain.width/3, mountain.width/3);
-  image(mountain, 600, 185, mountain.width/2, mountain.width/2);
+  if (snowLevel == 0) {
+    // left mountains
+    image(mountain, -100, 180, mountain.width/2, mountain.width/2);
+    image(mountain, 100, 280, mountain.width/3, mountain.width/3);
+   
+    // right mountains
+    image(mountain, 700, 80, mountain.width/1.5, mountain.width/1.5);
+    image(mountain, 500, 280, mountain.width/3, mountain.width/3);
+    image(mountain, 600, 185, mountain.width/2, mountain.width/2);
+  }
+  else if (snowLevel == 1) {
+    // left mountains
+    image(littleSnowMountain, -100, 180, mountain.width/2, mountain.width/2);
+    image(littleSnowMountain, 100, 280, mountain.width/3, mountain.width/3);
+   
+    // right mountains
+    image(littleSnowMountain, 700, 80, mountain.width/1.5, mountain.width/1.5);
+    image(littleSnowMountain, 500, 280, mountain.width/3, mountain.width/3);
+    image(littleSnowMountain, 600, 185, mountain.width/2, mountain.width/2);
+  }
+  else {
+    // left mountains
+    image(snowyMountain, -95, 190, mountain.width/2, mountain.width/2);
+    image(snowyMountain, 105, 290, mountain.width/3, mountain.width/3);
+   
+    // right mountains
+    image(snowyMountain, 705, 95, mountain.width/1.5, mountain.width/1.5);
+    image(snowyMountain, 505, 290, mountain.width/3, mountain.width/3);
+    image(snowyMountain, 605, 195, mountain.width/2, mountain.width/2);
+  }
 }
 
 // Method to sort by column
@@ -105,20 +127,17 @@ void drawWeatherObject(int[][] locs, PImage type, float x_offSet, float y_offSet
       int threshold2 = y_min + (2 * range);
       int threshold3 = y_min + (3 * range);
       if (y_min <= y && y < threshold1) {
-        //System.out.println("here");
+        //Object[] item = new Object[]{type, x - (x_offSet * 0.7), y - (y_offSet * 0.7), type.width/size[0], type.height/size[0]};
+        //objectOrdering.append(y - (y_offSet * 0.7), item);
         image(type, x - (x_offSet * 0.7), y - (y_offSet * 0.7), type.width/size[0], type.height/size[0]);
       }
       else if (threshold1 <= y && y < threshold2) {
-        //System.out.println("here2");
-        // have to divid offset here to ensure smaller objects dont move massively comparitively to larger ones
         image(type, x - (x_offSet * 0.8), y - (y_offSet * 0.8), type.width/size[1], type.height/size[1]);
       }
       else if (threshold2 <= y && y < threshold3) {
-        //System.out.println("here3");
         image(type, x - (x_offSet * 0.9), y - (y_offSet * 0.9), type.width/size[2], type.height/size[2]);
       }
       else {
-        //System.out.println("here4");
         image(type, x - x_offSet, y - y_offSet, type.width/size[3], type.height/size[3]);
       }
     }

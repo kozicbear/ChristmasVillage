@@ -1,16 +1,13 @@
 void draw() {
   background(bg);
-  
-  // TODO: Will have to stick these renders in a conditional that
-  // looks at the user's chosen snow level and render different mountains
-  // depending on their choice
-  
   drawBG();
+  
   drawHouses();
   drawTents();
   drawTrees();
   drawChristmasTrees();
   drawLampposts();
+  drawSnow();
 }
 
 void drawHouses() {
