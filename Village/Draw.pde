@@ -5,43 +5,145 @@ void draw() {
   // looks at the user's chosen snow level and render different mountains
   // depending on their choice
   
-  // left mountains
-  image(mountain, -100, 180, mountain.width/2, mountain.width/2);
-  image(mountain, 100, 280, mountain.width/3, mountain.width/3);
- 
-  // right mountains
-    image(mountain, 700, 80, mountain.width/1.5, mountain.width/1.5);
-  image(mountain, 500, 280, mountain.width/3, mountain.width/3);
-  image(mountain, 600, 185, mountain.width/2, mountain.width/2);
+  drawBG();
+  drawHouses();
+  drawTents();
+  drawTrees();
+  drawChristmasTrees();
+  drawLampposts();
+}
 
-  // houses
-  // Item placement ranges
-  // for y = (300 - 420)
-  // for x = (0 - 900)
-
-  //if (numberOfHouses != oldNumberOfHouses) {
-    // way we will control not printing houses is if we have a house at 0,0 it is considered not renderable
-    // but we always have 10 houses in our array, we just only print the ones in valid positions
-    if (numberOfHouses > oldNumberOfHouses) {
-      houseLocations[numberOfHouses][0] = random(0, 900);
-      houseLocations[numberOfHouses][1] = random(300, 420);
+void drawHouses() {
+  // way we will control not printing houses is if we have a house at 0,0 it is considered not renderable
+  // but we always have 10 houses in our array, we just only print the ones in valid positions
+  if (houses > oldNumberOfHouses) {
+    int diff = houses - oldNumberOfHouses;
+    while (diff > 0) {
+      houseLocations[oldNumberOfHouses + diff][0] = random(0, 900);
+      houseLocations[oldNumberOfHouses + diff][1] = random(houseYMin, houseYMax);
+      diff--;
     }
-    else if (numberOfHouses < oldNumberOfHouses) {
-      houseLocations[oldNumberOfHouses][0] = 0;
-      houseLocations[oldNumberOfHouses][1] = 0;
-    }
-    
-    oldNumberOfHouses = numberOfHouses;
-  //}
-  
-  for (int i = 0; i < houseLocations.length; i++){
-    if (houseLocations[i][1] != 0){
-      image(house, houseLocations[i][0], houseLocations[i][1], house.width/2, house.height/2);
+  }
+  else if (houses < oldNumberOfHouses) {
+    int diff = oldNumberOfHouses - houses;
+    while (diff > 0) {
+      houseLocations[houses + diff][0] = 0;
+      houseLocations[houses + diff][1] = 0;
+      diff--;
     }
   }
   
+  oldNumberOfHouses = houses;
   
+  // sort houses by y to ensure we draw back houses first
+  int[][] sorted_houses = sortByColumn(houseLocations, 1);
+  
+  drawObjects(sorted_houses, "House");
 }
 
-// TODO: also for houses that are further back, would be nice to have them be smaller
-// to give distance vibez
+void drawTents() {
+  // way we will control not printing houses is if we have a house at 0,0 it is considered not renderable
+  // but we always have 10 houses in our array, we just only print the ones in valid positions
+  if (tents > oldNumberOfTents) {
+    int diff = tents - oldNumberOfTents;
+    while (diff > 0) {
+      tentLocations[oldNumberOfTents + diff][0] = random(0, 900);
+      tentLocations[oldNumberOfTents + diff][1] = random(tentYMin, tentYMax);
+      diff--;
+    }
+  }
+  else if (tents < oldNumberOfTents) {
+    int diff = oldNumberOfTents - tents;
+    while (diff > 0) {
+      tentLocations[tents + diff][0] = 0;
+      tentLocations[tents + diff][1] = 0;
+      diff--;
+    }
+  }
+  
+  oldNumberOfTents = tents;
+  
+  // sort houses by y to ensure we draw back houses first
+  int[][] sorted_tents = sortByColumn(tentLocations, 1);
+  
+  drawObjects(sorted_tents, "Tent");
+}
+
+
+void drawTrees() {
+  if (trees > oldNumberOfTrees) {
+    int diff = trees - oldNumberOfTrees;
+    while (diff > 0) {
+      treeLocations[oldNumberOfTrees + diff][0] = random(0, 900);
+      treeLocations[oldNumberOfTrees + diff][1] = random(treeYMin, treeYMax);
+      diff--;
+    }
+  }
+  else if (trees < oldNumberOfTrees) {
+    int diff = oldNumberOfTrees - trees;
+    while (diff > 0) {
+      treeLocations[trees + diff][0] = 0;
+      treeLocations[trees + diff][1] = 0;
+      diff--;
+    }
+  }
+  
+  oldNumberOfTrees = trees;
+  
+  // sort houses by y to ensure we draw back houses first
+  int[][] sorted_trees = sortByColumn(treeLocations, 1);
+  
+  drawObjects(sorted_trees, "Tree");
+}
+
+void drawChristmasTrees() {
+  if (christmasTrees > oldNumberOfChristmasTrees) {
+    int diff = christmasTrees - oldNumberOfChristmasTrees;
+    while (diff > 0) {
+      christmasTreeLocations[oldNumberOfChristmasTrees + diff][0] = random(0, 900);
+      christmasTreeLocations[oldNumberOfChristmasTrees + diff][1] = random(christmasTreeYMin, christmasTreeYMax);
+      diff--;
+    }
+  }
+  else if (christmasTrees < oldNumberOfChristmasTrees) {
+    int diff = oldNumberOfChristmasTrees - christmasTrees;
+    while (diff > 0) {
+      christmasTreeLocations[christmasTrees + diff][0] = 0;
+      christmasTreeLocations[christmasTrees + diff][1] = 0;
+      diff--;
+    }
+  }
+  
+  oldNumberOfChristmasTrees = christmasTrees;
+  
+  // sort houses by y to ensure we draw back houses first
+  int[][] sorted_christmasTrees = sortByColumn(christmasTreeLocations, 1);
+  
+  drawObjects(sorted_christmasTrees, "ChristmasTree");
+}
+
+void drawLampposts() {
+  if (lampposts > oldNumberOfLampposts) {
+    int diff = lampposts - oldNumberOfLampposts;
+    while (diff > 0) {
+      lamppostLocations[oldNumberOfLampposts + diff][0] = random(0, 900);
+      lamppostLocations[oldNumberOfLampposts + diff][1] = random(lamppostsYMin, lamppostsYMax);
+      diff--;
+    }
+  }
+  else if (lampposts < oldNumberOfLampposts) {
+    int diff = oldNumberOfLampposts - lampposts;
+    while (diff > 0) {
+      lamppostLocations[lampposts + diff][0] = 0;
+      lamppostLocations[lampposts + diff][1] = 0;
+      diff--;
+    }
+  }
+  
+  oldNumberOfLampposts = lampposts;
+  
+  // sort houses by y to ensure we draw back houses first
+  int[][] sorted_lamppposts = sortByColumn(lamppostLocations, 1);
+  
+  drawObjects(sorted_lamppposts, "Lamppost");
+}
