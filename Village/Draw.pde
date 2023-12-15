@@ -39,8 +39,6 @@ void drawHouses() {
 }
 
 void drawTents() {
-  // way we will control not printing houses is if we have a house at 0,0 it is considered not renderable
-  // but we always have 10 houses in our array, we just only print the ones in valid positions
   if (tents > oldNumberOfTents) {
     int diff = tents - oldNumberOfTents;
     while (diff > 0) {
@@ -59,8 +57,6 @@ void drawTents() {
   }
   
   oldNumberOfTents = tents;
-  
-  // sort houses by y to ensure we draw back houses first
   int[][] sorted_tents = sortByColumn(tentLocations, 1);
   
   drawObjects(sorted_tents, "Tent");
@@ -84,10 +80,8 @@ void drawTrees() {
       diff--;
     }
   }
-  
+
   oldNumberOfTrees = trees;
-  
-  // sort houses by y to ensure we draw back houses first
   int[][] sorted_trees = sortByColumn(treeLocations, 1);
   
   drawObjects(sorted_trees, "Tree");
@@ -112,8 +106,6 @@ void drawChristmasTrees() {
   }
   
   oldNumberOfChristmasTrees = christmasTrees;
-  
-  // sort houses by y to ensure we draw back houses first
   int[][] sorted_christmasTrees = sortByColumn(christmasTreeLocations, 1);
   
   drawObjects(sorted_christmasTrees, "ChristmasTree");
@@ -138,8 +130,6 @@ void drawLampposts() {
   }
   
   oldNumberOfLampposts = lampposts;
-  
-  // sort houses by y to ensure we draw back houses first
   int[][] sorted_lamppposts = sortByColumn(lamppostLocations, 1);
   
   drawObjects(sorted_lamppposts, "Lamppost");

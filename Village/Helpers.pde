@@ -1,3 +1,4 @@
+// Method to draw the background according to weather configuration
 void drawBG() {
   if (snowLevel == 0) {
     // left mountains
@@ -46,7 +47,7 @@ int[][] sortByColumn(float[][] arr, int col) {
   return intArr;
 }
 
-
+// Method in charge of handling which type of snowy image is drawn
 void drawObjects(int[][] locs, String type) {
   // check what string for object is passed
   if (type == "House") {
@@ -74,27 +75,14 @@ void drawObjects(int[][] locs, String type) {
   }
   // Move it left x--, move down y--
   if (type == "Tree") {
-    if (random(0, 1) == 0) {
-      if (snowLevel == 0) {
-      drawWeatherObject(locs, tree, 0, 0, treeYMin, treeYMax, treeSize);
-      }
-      else if (snowLevel == 1) {
-        drawWeatherObject(locs, littleSnowTree, 3, -21, treeYMin, treeYMax, treeSize);
-      }
-      else {
-        drawWeatherObject(locs, snowyTree, 3, -19, treeYMin, treeYMax, treeSize);
-      }
+    if (snowLevel == 0) {
+    drawWeatherObject(locs, tree, 0, 0, treeYMin, treeYMax, treeSize);
+    }
+    else if (snowLevel == 1) {
+      drawWeatherObject(locs, littleSnowTree, 3, -21, treeYMin, treeYMax, treeSize);
     }
     else {
-      if (snowLevel == 0) {
-        drawWeatherObject(locs, tree, 0, 0, treeYMin, treeYMax, treeSize);
-      }
-      else if (snowLevel == 1) {
-        drawWeatherObject(locs, littleSnowTree, 3, -21, treeYMin, treeYMax, treeSize);
-      }
-      else {
-        drawWeatherObject(locs, snowyTree, 3, -19, treeYMin, treeYMax, treeSize);
-      }
+      drawWeatherObject(locs, snowyTree, 3, -19, treeYMin, treeYMax, treeSize);
     }
   }
   
@@ -115,7 +103,7 @@ void drawObjects(int[][] locs, String type) {
   
 }
 
-// offSet is used to try and keep object in same pos regardless of snow
+// Method to draw one of our PImages based on params passed in
 void drawWeatherObject(int[][] locs, PImage type, float x_offSet, float y_offSet, int y_min, int y_max, int[] size) {
   int range = (y_max - y_min) / 4;
   

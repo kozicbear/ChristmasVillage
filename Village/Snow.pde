@@ -1,7 +1,10 @@
+// Credits for this class go towards Ziv Schneider
+
 Snow[] flakes = new Snow[300];
 Snow[] heavyFlakes = new Snow[1000];
 
 void drawSnow() {
+  // Custom mods here to make snow only appear with snowlevel 1
   if(snowLevel == 1){
     for (int i = 0; i < flakes.length; i++) {
       flakes[i] .display();

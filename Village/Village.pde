@@ -11,40 +11,28 @@ int houseYMax = 480;
 int[] houseSize = new int[]{8, 6, 4, 3};
 
 int tents = 0;
-// used to stop houses being rerendered unless user adds a house
 int oldNumberOfTents = 0;
-// we want to use this to draw the houses
-// update this array to add or remove houses
 float[][] tentLocations = new float[6][2];
 int tentYMin = 440;
 int tentYMax = 480;
 int[] tentSize = new int[]{11, 9, 7, 4};
 
 int trees = 0;
-// used to stop houses being rerendered unless user adds a house
 int oldNumberOfTrees = 0;
-// we want to use this to draw the houses
-// update this array to add or remove houses
 float[][] treeLocations = new float[21][2];
 int treeYMin = 434;
 int treeYMax = 438;
 int[] treeSize = new int[]{4, 3, 2, 1};
 
 int christmasTrees = 0;
-// used to stop houses being rerendered unless user adds a house
 int oldNumberOfChristmasTrees = 0;
-// we want to use this to draw the houses
-// update this array to add or remove houses
 float[][] christmasTreeLocations = new float[21][2];
 int christmasTreeYMin = 434;
 int christmasTreeYMax = 438;
 int[] christmasTreeSize = new int[]{4, 3, 2, 2};
 
 int lampposts = 0;
-// used to stop houses being rerendered unless user adds a house
 int oldNumberOfLampposts = 0;
-// we want to use this to draw the houses
-// update this array to add or remove houses
 float[][] lamppostLocations = new float[21][2];
 int lamppostsYMin = 420;
 int lamppostsYMax = 424;
@@ -52,13 +40,8 @@ int[] lamppostSize = new int[]{4, 3, 2, 1};
 
 int snowLevel = 0;
 
-//ArrayList<Integer, List<Object>> objectOrdering = new ArrayList<Integer, ArrayList<Object>>(1000);
-
 void setup() {
-    size(1200, 750);
-  // The background image must be the same size as the parameters
-  // into the size() method. In this program, the size of the image
-  // is 640 x 360 pixels.
+  size(1200, 750);
   bg = loadImage("Background.jpg");
   mountain = loadImage("Mountain.png");
   littleSnowMountain = loadImage("LittleSnowMountain.png");
@@ -137,5 +120,4 @@ void setup() {
      .setHeight(30)
      .setRange(0,2)
      ;
-   
 }
